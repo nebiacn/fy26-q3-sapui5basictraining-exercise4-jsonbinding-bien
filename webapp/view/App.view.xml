@@ -1,0 +1,7 @@
+<mvc:View controllerName="sapips.training.fy26q3sapui5basictrainingexercise4jsonbindingbien.controller.App"
+    displayBlock="true"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <App id="app">
+    </App>
+</mvc:View>

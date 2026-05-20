@@ -1,6 +1,53 @@
-<mvc:View controllerName="sapips.training.fy26q3sapui5basictrainingexercise4jsonbindingbien.controller.JSONBinding"
+<mvc:View
+    xmlns:form="sap.ui.layout.form"
+    controllerName="sapips.training.fy26q3sapui5basictrainingexercise4jsonbindingbien.controller.JSONBinding"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
+    xmlns="sap.m"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <Panel
+            id="idPnlBasics"
+            headerText="Data Binding Basics"
+            class="sapUiresponsiveMargin"
+        >
+            <form:SimpleForm id="idSfBasics">
+                <Label
+                    id="idLblEID"
+                    text="EID"
+                />
+                <Input
+                    id="idInEID"
+                    enabled="{/Enabled}"
+                    value="{/EID}"
+                />
+                <Label
+                    id="idLblEnabled"
+                    text="Enabled"
+                />
+                <CheckBox id="idCbEnabled"
+                          selected="{/Enabled}" />
+            </form:SimpleForm>
+        </Panel>
+        <Panel
+            id="idPnlAddr"
+            headerText="Address Details"
+            class="sapUiresponsiveMargin"
+            width="auto"
+        >
+            <form:SimpleForm id="idSfAddr">
+            <Label id="idLblAddr" text="Address"></Label>
+            <Text id="idTxtAddr" text="{/Address/Street} {/Address/Zip} {/Address/City} {/Address/Country}" class="sapUiSmallMarginBottom"></Text>
+            <Link id="idLinkSendEmail" text="Send Email" href="{ path: '/EID', formatter: '.formatter.formatMail'}"></Link>
+            <Label id="idLblSalesAmount" text="Sales Amount" class="sapUiSmallMarginBegin"></Label>
+            <Input id="idInSalesAmount" enabled="{/Enabled}" value="{ parts: [ {path: '/SalesAmount'}, {path: '/CurrencyCode'} ], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+></Input>
+
+
+        </Panel>
+
+        <form:SimpleForm id="idSf"></form:SimpleForm>
     </Page>
 </mvc:View>

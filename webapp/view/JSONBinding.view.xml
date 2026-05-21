@@ -1,6 +1,166 @@
-<mvc:View controllerName="sapips.training.fy26q3sapui5basictrainingexercise4jsonbindingbien.controller.JSONBinding"
+<mvc:View
+    xmlns:form="sap.ui.layout.form"
+    controllerName="sapips.training.fy26q3sapui5basictrainingexercise4jsonbindingbien.controller.JSONBinding"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
+    xmlns="sap.m"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <Panel
+            id="idPnlBasics"
+            headerText="Data Binding Basics"
+            class="sapUiresponsiveMargin"
+        >
+            <form:SimpleForm id="idSfBasics">
+                <Label
+                    id="idLblEID"
+                    text="EID"
+                />
+                <Input
+                    id="idInEID"
+                    enabled="{/Enabled}"
+                    value="{/EID}"
+                />
+                <Label
+                    id="idLblEnabled"
+                    text="Enabled"
+                />
+                <CheckBox
+                    id="idCbEnabled"
+                    selected="{/Enabled}"
+                />
+            </form:SimpleForm>
+        </Panel>
+        <Panel
+            id="idPnlAddr"
+            headerText="Address Details"
+            class="sapUiresponsiveMargin"
+            width="auto"
+        >
+            <form:SimpleForm id="idSfAddr">
+                <Label
+                    id="idLblAddr"
+                    text="Address"
+                />
+                <Text
+                    id="idTxtAddr"
+                    text="{/Address/Street} {/Address/Zip} {/Address/City} {/Address/Country}"
+                    class="sapUiSmallMarginBottom"
+                />
+                <Link
+                    id="idLinkSendEmail"
+                    text="Send Email"
+                    href="{ path: '/EID', formatter: '.formatter.formatMail'}"
+                />
+                <Label
+                    id="idLblSalesAmount"
+                    text="Sales Amount"
+                    class="sapUiSmallMarginBegin"
+                />
+                <Input
+                    id="idInSalesAmount"
+                    enabled="{/Enabled}"
+                    value="{ parts: [ {path: '/SalesAmount'}, {path: '/CurrencyCode'} ], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+                    change="onSalesAmountChange"
+                />
+            </form:SimpleForm>
+        </Panel>
+        <Panel
+            id="idPnlAggrBind"
+            headerText="Aggregation Binding"
+            class="SapUiResponsiveMargin"
+            width="auto"
+        >
+            <List
+                id="idListAggrBind"
+                items="{ProductsModel>/Products}"
+                mode="SingleSelectMaster"
+                selectionChange="onProductPress"
+            >
+                <items>
+                    <ObjectListItem
+                        id="idObjlistitemProduct"
+                        title="{ProductsModel>ProductName}"
+                        number="{ parts: [ {path: 'ProductsModel>UnitPrice'}, {path: '/CurrencyCode'} ], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false } }"
+                        numberUnit="{/CurrencyCode}"
+                        type="Active"
+                    >
+                        <attributes>
+                            <ObjectAttribute
+                                id="idObjattrQuantityPerUnit"
+                                text="{ProductsModel>QuantityPerUnit}"
+                            />
+                            <ObjectAttribute
+                                id="idObjattrCurrentStock"
+                                title="{i18n>currentStock}"
+                                text="{ parts: [ {path: 'ProductsModel>UnitPrice'}, {path: 'ProductsModel>UnitsInStock'}, {path: '/CurrencyCode'} ], formatter: '.formatter.formatStockValue' }"
+                            />
+                        </attributes>
+                    </ObjectListItem>
+                </items>
+            </List>
+        </Panel>
+
+        <Panel
+            id="idPnlProductDetails"
+            headerText="Product Details"
+            class="sapUiresponsiveMargin"
+            width="auto"
+        >
+            <form:SimpleForm id="idSfProductDetails">
+                <form:content>
+                    <Label
+                        id="idLblProductID"
+                        text="Product ID"
+                    />
+                    <Input
+                        id="idInProductID"
+                        value="{SelectedProductModel>/ProductID}"
+                    />
+                    <Label
+                        id="idLblProductName"
+                        text="Product Name"
+                    />
+                    <Input
+                        id="idInProductName"
+                        value="{SelectedProductModel>/ProductName}"
+                    />
+                    <Label
+                        id="idLblQuantityPerUnit"
+                        text="Quantity Per Unit"
+                    />
+                    <Input
+                        id="idInQuantityPerUnit"
+                        value="{SelectedProductModel>/QuantityPerUnit}"
+                    />
+                    <Label
+                        id="idLblUnitPrice"
+                        text="Unit Price"
+                    />
+                    <Input
+                        id="idInUnitPrice"
+                        value="{SelectedProductModel>/UnitPrice}"
+                    />
+                    <Label
+                        id="idLblUnitsInStock"
+                        text="Units In Stock"
+                    />
+                    <Input
+                        id="idInUnitsInStock"
+                        value="{SelectedProductModel>/UnitsInStock}"
+                    />
+                    <Label
+                        id="idLblDiscontinued"
+                        text="Discontinued"
+                    />
+                    <Input
+                        id="idChkDiscontinued"
+                        value="{SelectedProductModel>/Discontinued}"
+                    />
+                </form:content>
+            </form:SimpleForm>
+        </Panel>
     </Page>
 </mvc:View>

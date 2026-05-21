@@ -95,7 +95,7 @@
                             <ObjectAttribute
                                 id="idObjattrCurrentStock"
                                 title="{i18n>currentStock}"
-                                text="{ parts: [ {path: 'UnitPrice'}, {path: 'UnitsInStock'}, {path: '/CurrencyCode'} ], formatter: '.formatter.formatStockValue' }"
+                                text="{ parts: [ {path: 'ProductsModel>UnitPrice'}, {path: 'ProductsModel>UnitsInStock'}, {path: '/CurrencyCode'} ], formatter: '.formatter.formatStockValue' }"
                             />
                         </attributes>
                     </ObjectListItem>

@@ -1,10 +1,12 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel"
-], (Controller, JSONModel) => {
+    "sap/ui/model/json/JSONModel",
+    "../model/formatter"
+], (Controller, JSONModel, formatter) => {
     "use strict";
 
     return Controller.extend("sapips.training.fy26q3sapui5basictrainingexercise4jsonbindingbien.controller.JSONBinding", {
+        formatter: formatter,
         onInit() {
             const oModel = new JSONModel({
                 "EID": "bien.gilzon.c.lara",
@@ -31,7 +33,7 @@ sap.ui.define([
                 "UnitsInStock": "",
                 "UnitsOnOrder": "",
                 "ReorderLevel": "",
-                "Discontinued": false
+                "Discontinued": ""
             });
 
             // set another view model to contain selected product details                                            
